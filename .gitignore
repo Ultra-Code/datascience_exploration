@@ -78,6 +78,10 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# Jupyter Lab
+.virtual_documents
+*:Zone.Identifier
+
 # IPython
 profile_default/
 ipython_config.py

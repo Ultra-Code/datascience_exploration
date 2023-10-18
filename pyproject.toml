@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "datascience"
+version = "0.1.0"
+description = "Learning and exploring the field of Datascience, Machine Learning and Artificial Intelligence"
+authors = ["Ultra-Code <mega.alpha100@gmail.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+jupyterlab = "^4.0.7"
+#packages used to run SQL in Jupyter
+pymysql = "^1.1.0"
+ipython-sql = "^0.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
