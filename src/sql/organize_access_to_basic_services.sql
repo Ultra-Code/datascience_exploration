@@ -1,3 +1,4 @@
+USE united_nations;
 DROP TABLE IF EXISTS Basic_Services;
 DROP TABLE IF EXISTS Economic_Indicators;
 DROP TABLE IF EXISTS Geographic_Location;
