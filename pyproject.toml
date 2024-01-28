@@ -12,6 +12,7 @@ jupyterlab = "^4.0.7"
 #packages used to run SQL in Jupyter
 pymysql = "^1.1.0"
 ipython-sql = "^0.5.0"
+pygame = "^2.5.2"
 
 
 [build-system]
