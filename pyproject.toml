@@ -17,8 +17,101 @@ pandas = "^2.2.0"
 sqlalchemy = "^2.0.25"
 matplotlib = "^3.8.2"
 pyarrow = "^15.0.0"
+scipy = "^1.12.0"
 
+
+[tool.poetry.group.dev.dependencies]
+pandas-stubs = "^2.2.0.240218"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+# ignore_missing_imports = true
+follow_imports = "normal"
+disallow_any_unimported = true
+disallow_any_expr = true
+disallow_any_decorated = true
+disallow_any_explicit = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unreachable = true
+strict_equality = true
+strict = true
+cache_fine_grained = true
+warn_incomplete_stub = true
+verbosity = 0
+
+[tool.pylsp-mypy]
+enabled = true
+live_mode = true
+dmypy = false # it conflicts with live_mode
+strict = true
+exclude = ["tests/*"]
+
+[tool.ruff]
+line-length = 80
+indent-width = 4
+
+[tool.ruff.lint]
+# Enable the pycodestyle (`E`) and Pyflakes (`F`) rules by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["ALL"]
+ignore = ["D","W","T20","S101"]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+# use double quotes for strings.
+quote-style = "double"
+# indent with spaces, rather than tabs.
+indent-style = "space"
+# respect magic trailing commas.
+skip-magic-trailing-comma = false
+# automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[tool.pylint.main]
+# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
+# number of processors available to use, and will cap the count on Windows to
+# avoid hangs.
+jobs = 0
+
+# List of plugins (as comma separated values of python module names) to load,
+# usually to register additional checkers.
+load-plugins = ["pylint.extensions.emptystring","pylint.extensions.comparetozero","pylint.extensions.comparison_placement",
+                "pylint.extensions.confusing_elif","pylint.extensions.for_any_all","pylint.extensions.consider_refactoring_into_while_condition",
+                "pylint.extensions.consider_ternary_expression","pylint.extensions.bad_builtin",
+                "pylint.extensions.dict_init_mutate","pylint.extensions.check_elif","pylint.extensions.empty_comment",
+                "pylint.extensions.eq_without_hash","pylint.extensions.private_import","pylint.extensions.redefined_variable_type",
+                "pylint.extensions.no_self_use","pylint.extensions.overlapping_exceptions","pylint.extensions.redefined_loop_name",
+                "pylint.extensions.set_membership","pylint.extensions.while_used"
+]
+
+[tool.pylint."messages control"]
+# Disable the message, report, category or checker with the given id(s). You can
+# either give multiple identifiers separated by comma (,) or put this option
+# multiple times (only on the command line, not in the configuration file where
+# it should appear only once). You can also use "--disable=all" to disable
+# everything first and then re-enable specific checks. For example, if you want
+# to run only the similarities checker, you can use "--disable=all
+# --enable=similarities". If you want to run only the classes checker, but have
+# no Warning level messages displayed, use "--disable=all --enable=classes
+# --disable=W".
+disable = ["too-many-return-statements","line-too-long","missing-module-docstring","missing-function-docstring",
+           "missing-class-docstring","wrong-import-position", "unused-argument","unnecessary-lambda-assignment",
+    "unnecessary-direct-lambda-call", "unnecessary-comprehension"
+]
+
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where it
+# should appear only once). See also the "--disable" option for examples.
+enable = ["raw-checker-failed", "bad-inline-option", "locally-disabled", "file-ignored",
+          "suppressed-message", "useless-suppression", "deprecated-pragma", "use-symbolic-message-instead"
+]
