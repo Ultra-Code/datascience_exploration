@@ -1,3 +1,6 @@
+"""
+A Module for handing weather data processing
+"""
 import re
 import numpy as np
 import pandas as pd
@@ -17,9 +20,16 @@ config_params = {
 
 
 class WeatherDataProcessor:
+    """
+    A Weather Data Processor class
+    """
     def __init__(
         self, config_params, logging_level="INFO"
     ):  # Now we're passing in the confi_params dictionary already
+        """
+        Initialize the WeatherDataProcessor class with it relevant config
+        And initialize logging
+        """
         self.weather_station_data = config_params["weather_csv_path"]
         self.patterns = config_params["regex_patterns"]
         self.weather_df = (
@@ -28,6 +38,9 @@ class WeatherDataProcessor:
         self.initialize_logging(logging_level)
 
     def initialize_logging(self, logging_level):
+        """
+        Setup logging
+        """
         logger_name = __name__ + ".WeatherDataProcessor"
         self.logger = logging.getLogger(logger_name)
         self.logger.propagate = False  # Prevents log messages from being propagated to the root logger
@@ -55,6 +68,7 @@ class WeatherDataProcessor:
             self.logger.addHandler(ch)
 
     def weather_station_mapping(self):
+        """Load CSV data into a dataframe from the web"""
         self.weather_df = read_from_web_CSV(self.weather_station_data)
         self.logger.info(
             "Successfully loaded weather station data from the web."
@@ -62,6 +76,7 @@ class WeatherDataProcessor:
         # Here, you can apply any initial transformations to self.weather_df if necessary.
 
     def extract_measurement(self, message):
+        """Extract measurement"""
         for key, pattern in self.patterns.items():
             match = re.search(pattern, message)
             if match:
@@ -73,6 +88,7 @@ class WeatherDataProcessor:
         return None, None
 
     def process_messages(self):
+        """Process messages"""
         if self.weather_df is not None:
             result = self.weather_df["Message"].apply(self.extract_measurement)
             self.weather_df["Measurement"], self.weather_df["Value"] = zip(
@@ -86,6 +102,7 @@ class WeatherDataProcessor:
         return self.weather_df
 
     def calculate_means(self):
+        """Calculate means of Weather data"""
         if self.weather_df is not None:
             means = self.weather_df.groupby(
                 by=["Weather_station_ID", "Measurement"]
@@ -99,6 +116,7 @@ class WeatherDataProcessor:
             return None
 
     def process(self):
+        """Process the data in the WeatherDataProcessor class"""
         self.weather_station_mapping()  # Load and assign data to weather_df
         self.process_messages()  # Process messages to extract measurements
         self.logger.info("Data processing completed.")

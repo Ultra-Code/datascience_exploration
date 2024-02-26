@@ -1,3 +1,6 @@
+"""
+Add module for handing creating, quering and reading both CV files and sqlite db files
+"""
 import logging
 
 import pandas as pd
@@ -10,10 +13,23 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
-db_path = "sqlite:///Student_pack/Maji_Ndogo_farm_survey_small.db"
+db_path = "sqlite:///Maji_Ndogo_farm_survey_small.db"
 
 
 def create_db_engine(db_path):
+    """
+    Create a database engine
+    
+    Parameters:
+    db_path (str): A string containing the path to the database.
+
+    Returns:
+    object: A database engine used for performing queries.
+    
+    Example usage:
+    field_df = query_data(create_db_engine(db_path), sql_query) 
+    # Returns: field_df
+    """
     try:
         engine = create_engine(db_path)
         # Test connection
@@ -35,6 +51,15 @@ def create_db_engine(db_path):
 
 
 def query_data(engine, sql_query):
+    """
+    Query a database engine to perform an sql query
+    
+    Parameters:
+    engine (Object): a database engine created with A create_engine().
+    sql_query (str): the query to be executed
+
+    Returns:(void)
+    """
     try:
         with engine.connect() as connection:
             df = pd.read_sql_query(text(sql_query), connection)
@@ -56,6 +81,15 @@ def query_data(engine, sql_query):
 
 
 def read_from_web_CSV(URL):
+    """
+    Reads a CSV from a remote link
+    
+    Parameters:
+    URL (str): a link to a csv remotely hosted online.
+
+    Returns:
+        DataFrame: Add pandas dataframe representing the CSV file
+    """
     try:
         df = pd.read_csv(URL)
         logger.info("CSV file read successfully from the web.")

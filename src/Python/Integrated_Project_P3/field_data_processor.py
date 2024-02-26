@@ -1,11 +1,14 @@
 # Copy in your class including the ingest_sql_data method here
+"""
+A module for field data processing
+"""
 import logging
 
 import pandas as pd
 from data_ingestion import create_db_engine, query_data, read_from_web_CSV
 
 config_params = {
-    "db_path": "sqlite:///Student_pack/Maji_Ndogo_farm_survey_small.db",
+    "db_path": "sqlite:///Maji_Ndogo_farm_survey_small.db",
     "sql_query": """SELECT *
             FROM geographic_features
             LEFT JOIN weather_features USING (Field_ID)
@@ -26,11 +29,17 @@ config_params = {
 
 
 class FieldDataProcessor:
+    """
+    A class for Field data processing
+    """
     def __init__(
         self, config_params, logging_level="INFO"
-    ):  # When we instantiate this class, we can optionally specify what logs we want to see
-        # Initialising class with attributes we need. Refer to the code above
-        # to understand how each attribute relates to the code
+    ):  
+        """
+        When we instantiate this class, we can optionally specify what logs we want to see
+        Initialising class with attributes we need. Refer to the code above
+        to understand how each attribute relates to the code
+        """
         self.db_path = config_params["db_path"]
         self.sql_query = config_params["sql_query"]
         self.columns_to_rename = config_params["columns_to_rename"]
@@ -78,13 +87,14 @@ class FieldDataProcessor:
 
     # let's focus only on this part from now on
     def ingest_sql_data(self):
-        self.logger.info("Sucessfully loaded data.")
+        """Transforming data from a database into a dataframe"""
         self.engine = create_db_engine(self.db_path)
         self.df = query_data(self.engine, self.sql_query)
+        self.logger.info("Sucessfully loaded data.")
         return self.df
 
     def rename_columns(self):
-        # Extract the columns to rename from the configuration
+        """Extract the columns to rename from the configuration"""
         column1, column2 = (
             list(self.columns_to_rename.keys())[0],
             list(self.columns_to_rename.values())[0],
@@ -104,23 +114,25 @@ class FieldDataProcessor:
     def apply_corrections(
         self, column_name="Crop_type", abs_column="Elevation"
     ):
-        # Correct the crop strings, Eg: 'cassaval' -> 'cassava'
+        """Correct the crop strings, Eg: 'cassaval' -> 'cassava'"""
         self.df[abs_column] = self.df[abs_column].abs()
         self.df[column_name] = self.df[column_name].apply(
             lambda crop: self.values_to_rename.get(crop, crop)
         )
 
     def weather_station_mapping(self):
-        # Merge the weather station data to the main DataFrame
+        """Get And transform the weather station data to the main DataFrame"""
         return read_from_web_CSV(self.weather_map_data)
 
     def process(self):
-        # This process calls the correct methods, and applies the changes,
-        # step by step. THis is the method we will call, and it will call
-        # the other methods in order.
+        """
+        This process calls the correct methods, and applies the changes,
+        step by step. THis is the method we will call, and it will call
+        the other methods in order.
+        """
         self.df = self.ingest_sql_data()
-        self.rename_columns()
         self.apply_corrections()
-        weather_map_df = self.weather_station_mapping()
-        self.df = self.df.merge(weather_map_df, on="Field_ID", how="left")
+        self.rename_columns()
+        weather_map_df = self.weather_station_mapping() 
+        self.df = self.df.merge(weather_map_df, on='Field_ID', how='left')
         self.df = self.df.drop(columns="Unnamed: 0")
