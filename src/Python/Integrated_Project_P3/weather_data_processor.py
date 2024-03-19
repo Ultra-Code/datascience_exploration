@@ -1,11 +1,12 @@
 """
 A Module for handing weather data processing
 """
+
 import re
 import numpy as np
 import pandas as pd
 import logging
-from data_ingestion import read_from_web_CSV
+from .data_ingestion import read_from_web_CSV
 
 patterns = {
     "Rainfall": r"(\d+(\.\d+)?)\s?mm",
@@ -23,6 +24,7 @@ class WeatherDataProcessor:
     """
     A Weather Data Processor class
     """
+
     def __init__(
         self, config_params, logging_level="INFO"
     ):  # Now we're passing in the confi_params dictionary already

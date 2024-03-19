@@ -2,10 +2,11 @@
 """
 A module for field data processing
 """
+
 import logging
 
 import pandas as pd
-from data_ingestion import create_db_engine, query_data, read_from_web_CSV
+from .data_ingestion import create_db_engine, query_data, read_from_web_CSV
 
 config_params = {
     "db_path": "sqlite:///Maji_Ndogo_farm_survey_small.db",
@@ -32,9 +33,8 @@ class FieldDataProcessor:
     """
     A class for Field data processing
     """
-    def __init__(
-        self, config_params, logging_level="INFO"
-    ):  
+
+    def __init__(self, config_params, logging_level="INFO"):
         """
         When we instantiate this class, we can optionally specify what logs we want to see
         Initialising class with attributes we need. Refer to the code above
@@ -44,7 +44,7 @@ class FieldDataProcessor:
         self.sql_query = config_params["sql_query"]
         self.columns_to_rename = config_params["columns_to_rename"]
         self.values_to_rename = config_params["values_to_rename"]
-        self.weather_map_data = config_params["weather_map_data"]
+        self.weather_map_data = config_params["weather_mapping_csv"]
 
         self.initialize_logging(logging_level)
 
@@ -133,6 +133,6 @@ class FieldDataProcessor:
         self.df = self.ingest_sql_data()
         self.apply_corrections()
         self.rename_columns()
-        weather_map_df = self.weather_station_mapping() 
-        self.df = self.df.merge(weather_map_df, on='Field_ID', how='left')
+        weather_map_df = self.weather_station_mapping()
+        self.df = self.df.merge(weather_map_df, on="Field_ID", how="left")
         self.df = self.df.drop(columns="Unnamed: 0")
