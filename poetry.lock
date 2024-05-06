@@ -1636,6 +1636,29 @@ files = [
 ]
 
 [[package]]
+name = "mlxtend"
+version = "0.23.1"
+description = "Machine Learning Library Extensions"
+optional = false
+python-versions = "*"
+files = [
+    {file = "mlxtend-0.23.1-py3-none-any.whl", hash = "sha256:38cb84f864dfdaa85c1d7e46d374be94d3d0fd0e2662ad278f42ccc4abcc785a"},
+    {file = "mlxtend-0.23.1.tar.gz", hash = "sha256:9f3075e3deac57f4452fee2c1f0befda58a24c1f9c26bed649a2303ca04baa29"},
+]
+
+[package.dependencies]
+joblib = ">=0.13.2"
+matplotlib = ">=3.0.0"
+numpy = ">=1.16.2"
+pandas = ">=0.24.2"
+scikit-learn = ">=1.0.2"
+scipy = ">=1.2.1"
+
+[package.extras]
+docs = ["mkdocs", "mkdocs-bootswatch", "nbconvert", "python-markdown-math"]
+testing = ["pytest"]
+
+[[package]]
 name = "nbclient"
 version = "0.10.0"
 description = "A client library for executing notebooks. Formerly nbconvert's ExecutePreprocessor."
@@ -3695,4 +3718,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "3f085f232b623ce46961a16062850d2a4f62e3d6b7e12cccebf5ff9923faa24f"
+content-hash = "3f565c7b022721ca6d0a4d9b334fcec526370e1a257f05c73fe2a7daad6e2250"
