@@ -4,32 +4,33 @@ version = "0.1.0"
 description = "Learning and exploring the field of Datascience, Machine Learning and Artificial Intelligence"
 authors = ["Ultra-Code <mega.alpha100@gmail.com>"]
 readme = "README.md"
-packages = [{include = "src"}]
+packages = [{ include = "src" }]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-jupyterlab = "^4.0.7"
+python = "^3.12"
+jupyterlab = "^4.2.2"
 #packages used to run SQL in Jupyter
-pymysql = "^1.1.0"
+pymysql = "^1.1.1"
 ipython-sql = "^0.5.0"
 pygame = "^2.5.2"
-pandas = "^2.2.0"
-sqlalchemy = "^2.0.25"
-matplotlib = "^3.8.2"
-pyarrow = "^15.0.0"
-scipy = "^1.12.0"
-pytest = "^8.0.2"
-scikit-learn = "^1.4.1.post1"
-ipympl = "^0.9.3"
-statsmodels = "^0.14.1"
-python-lsp-server = {extras = ["rope"], version = "^1.10.1"}
-python-lsp-ruff = "^2.2.0"
+pandas = "^2.2.2"
+sqlalchemy = "^2.0.30"
+matplotlib = "^3.9.0"
+pyarrow = "^16.1.0"
+scipy = "^1.13.1"
+pytest = "^8.2.2"
+scikit-learn = "^1.5.0"
+ipympl = "^0.9.4"
+statsmodels = "^0.14.2"
+python-lsp-server = { extras = ["rope"], version = "^1.11.0" }
+python-lsp-ruff = "^2.2.1"
 jupyterlab-lsp = "^5.1.0"
 nltk = "^3.8.1"
 seaborn = "^0.13.2"
 mlxtend = "^0.23.1"
 cufflinks = "^0.17.3"
 wordcloud = "^1.9.3"
+geopandas = "^0.14.4"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -59,7 +60,7 @@ verbosity = 0
 [tool.pylsp-mypy]
 enabled = true
 live_mode = true
-dmypy = false # it conflicts with live_mode
+dmypy = false         # it conflicts with live_mode
 strict = true
 exclude = ["tests/*"]
 
@@ -72,7 +73,7 @@ indent-width = 4
 # Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
 # McCabe complexity (`C901`) by default.
 select = ["ALL"]
-ignore = ["D","W","T20","S101"]
+ignore = ["D", "W", "T20", "S101"]
 
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]
@@ -96,13 +97,26 @@ jobs = 0
 
 # List of plugins (as comma separated values of python module names) to load,
 # usually to register additional checkers.
-load-plugins = ["pylint.extensions.emptystring","pylint.extensions.comparetozero","pylint.extensions.comparison_placement",
-                "pylint.extensions.confusing_elif","pylint.extensions.for_any_all","pylint.extensions.consider_refactoring_into_while_condition",
-                "pylint.extensions.consider_ternary_expression","pylint.extensions.bad_builtin",
-                "pylint.extensions.dict_init_mutate","pylint.extensions.check_elif","pylint.extensions.empty_comment",
-                "pylint.extensions.eq_without_hash","pylint.extensions.private_import","pylint.extensions.redefined_variable_type",
-                "pylint.extensions.no_self_use","pylint.extensions.overlapping_exceptions","pylint.extensions.redefined_loop_name",
-                "pylint.extensions.set_membership","pylint.extensions.while_used"
+load-plugins = [
+  "pylint.extensions.emptystring",
+  "pylint.extensions.comparetozero",
+  "pylint.extensions.comparison_placement",
+  "pylint.extensions.confusing_elif",
+  "pylint.extensions.for_any_all",
+  "pylint.extensions.consider_refactoring_into_while_condition",
+  "pylint.extensions.consider_ternary_expression",
+  "pylint.extensions.bad_builtin",
+  "pylint.extensions.dict_init_mutate",
+  "pylint.extensions.check_elif",
+  "pylint.extensions.empty_comment",
+  "pylint.extensions.eq_without_hash",
+  "pylint.extensions.private_import",
+  "pylint.extensions.redefined_variable_type",
+  "pylint.extensions.no_self_use",
+  "pylint.extensions.overlapping_exceptions",
+  "pylint.extensions.redefined_loop_name",
+  "pylint.extensions.set_membership",
+  "pylint.extensions.while_used",
 ]
 
 [tool.pylint."messages control"]
@@ -115,15 +129,30 @@ load-plugins = ["pylint.extensions.emptystring","pylint.extensions.comparetozero
 # --enable=similarities". If you want to run only the classes checker, but have
 # no Warning level messages displayed, use "--disable=all --enable=classes
 # --disable=W".
-disable = ["too-many-return-statements","line-too-long","missing-module-docstring","missing-function-docstring",
-           "missing-class-docstring","wrong-import-position", "unused-argument","unnecessary-lambda-assignment",
-    "unnecessary-direct-lambda-call", "unnecessary-comprehension"
+disable = [
+  "too-many-return-statements",
+  "line-too-long",
+  "missing-module-docstring",
+  "missing-function-docstring",
+  "missing-class-docstring",
+  "wrong-import-position",
+  "unused-argument",
+  "unnecessary-lambda-assignment",
+  "unnecessary-direct-lambda-call",
+  "unnecessary-comprehension",
 ]
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where it
 # should appear only once). See also the "--disable" option for examples.
-enable = ["raw-checker-failed", "bad-inline-option", "locally-disabled", "file-ignored",
-          "suppressed-message", "useless-suppression", "deprecated-pragma", "use-symbolic-message-instead"
+enable = [
+  "raw-checker-failed",
+  "bad-inline-option",
+  "locally-disabled",
+  "file-ignored",
+  "suppressed-message",
+  "useless-suppression",
+  "deprecated-pragma",
+  "use-symbolic-message-instead",
 ]
