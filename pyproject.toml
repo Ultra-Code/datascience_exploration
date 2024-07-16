@@ -69,9 +69,8 @@ line-length = 80
 indent-width = 4
 
 [tool.ruff.lint]
-# Enable the pycodestyle (`E`) and Pyflakes (`F`) rules by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
+# Enable all rules and disable pydocstyle (`D`), pycodestyle warning (`W`)
+# print found (`T20`) and assert detected (`S101`) warning
 select = ["ALL"]
 ignore = ["D", "W", "T20", "S101"]
 
