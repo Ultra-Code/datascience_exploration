@@ -8,7 +8,7 @@ packages = [{ include = "src" }]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-jupyterlab = "^4.2.2"
+jupyterlab = "^4.2.4"
 #packages used to run SQL in Jupyter
 pymysql = "^1.1.1"
 ipython-sql = "^0.5.0"
@@ -31,6 +31,9 @@ mlxtend = "^0.23.1"
 cufflinks = "^0.17.3"
 wordcloud = "^1.9.3"
 geopandas = "^0.14.4"
+ipywidgets = "^8.1.3"
+chart-studio = "^1.1.0"
+jupyterlab-widgets = "^3.0.11"
 
 
 [tool.poetry.group.dev.dependencies]

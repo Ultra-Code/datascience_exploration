@@ -406,6 +406,23 @@ files = [
 ]
 
 [[package]]
+name = "chart-studio"
+version = "1.1.0"
+description = "Utilities for interfacing with plotly's Chart Studio"
+optional = false
+python-versions = "*"
+files = [
+    {file = "chart-studio-1.1.0.tar.gz", hash = "sha256:a17283b62470306d77060b200f13f9749c807dd15613c113d36f8d057f5c7019"},
+    {file = "chart_studio-1.1.0-py3-none-any.whl", hash = "sha256:fd183185d6e6d31c642567145c1a862f941ca9c7695aac8b2f3ebbcbcea31a7a"},
+]
+
+[package.dependencies]
+plotly = "*"
+requests = "*"
+retrying = ">=1.3.3"
+six = "*"
+
+[[package]]
 name = "click"
 version = "8.1.7"
 description = "Composable command line interface toolkit"
@@ -1380,13 +1397,13 @@ test = ["jupyter-server (>=2.0.0)", "pytest (>=7.0)", "pytest-jupyter[server] (>
 
 [[package]]
 name = "jupyterlab"
-version = "4.2.2"
+version = "4.2.4"
 description = "JupyterLab computational environment"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "jupyterlab-4.2.2-py3-none-any.whl", hash = "sha256:59ee9b839f43308c3dfd55d72d1f1a299ed42a7f91f2d1afe9c12a783f9e525f"},
-    {file = "jupyterlab-4.2.2.tar.gz", hash = "sha256:a534b6a25719a92a40d514fb133a9fe8f0d9981b0bbce5d8a5fcaa33344a3038"},
+    {file = "jupyterlab-4.2.4-py3-none-any.whl", hash = "sha256:807a7ec73637744f879e112060d4b9d9ebe028033b7a429b2d1f4fc523d00245"},
+    {file = "jupyterlab-4.2.4.tar.gz", hash = "sha256:343a979fb9582fd08c8511823e320703281cd072a0049bcdafdc7afeda7f2537"},
 ]
 
 [package.dependencies]
@@ -1409,7 +1426,7 @@ dev = ["build", "bump2version", "coverage", "hatch", "pre-commit", "pytest-cov",
 docs = ["jsx-lexer", "myst-parser", "pydata-sphinx-theme (>=0.13.0)", "pytest", "pytest-check-links", "pytest-jupyter", "sphinx (>=1.8,<7.3.0)", "sphinx-copybutton"]
 docs-screenshots = ["altair (==5.3.0)", "ipython (==8.16.1)", "ipywidgets (==8.1.2)", "jupyterlab-geojson (==3.4.0)", "jupyterlab-language-pack-zh-cn (==4.1.post2)", "matplotlib (==3.8.3)", "nbconvert (>=7.0.0)", "pandas (==2.2.1)", "scipy (==1.12.0)", "vega-datasets (==0.9.0)"]
 test = ["coverage", "pytest (>=7.0)", "pytest-check-links (>=0.7)", "pytest-console-scripts", "pytest-cov", "pytest-jupyter (>=0.5.3)", "pytest-timeout", "pytest-tornasync", "requests", "requests-cache", "virtualenv"]
-upgrade-extension = ["copier (>=8,<10)", "jinja2-time (<0.3)", "pydantic (<2.0)", "pyyaml-include (<2.0)", "tomli-w (<2.0)"]
+upgrade-extension = ["copier (>=9,<10)", "jinja2-time (<0.3)", "pydantic (<3.0)", "pyyaml-include (<3.0)", "tomli-w (<2.0)"]
 
 [[package]]
 name = "jupyterlab-lsp"
@@ -3019,6 +3036,20 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "retrying"
+version = "1.3.4"
+description = "Retrying"
+optional = false
+python-versions = "*"
+files = [
+    {file = "retrying-1.3.4-py3-none-any.whl", hash = "sha256:8cc4d43cb8e1125e0ff3344e9de678fefd85db3b750b81b2240dc0183af37b35"},
+    {file = "retrying-1.3.4.tar.gz", hash = "sha256:345da8c5765bd982b1d1915deb9102fd3d1f7ad16bd84a9700b85f64d24e8f3e"},
+]
+
+[package.dependencies]
+six = ">=1.7.0"
+
+[[package]]
 name = "rfc3339-validator"
 version = "0.1.4"
 description = "A pure python RFC3339 validator"
@@ -4018,4 +4049,4 @@ pillow = "*"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "394a6182b180a92ba3081355fba2b1a6c63d6d59efb6c913127c01fdf659f98f"
+content-hash = "313f5e501d580fe5ca6bb7798978c855d238636ad3b4c38ea9daa4f217f36b8d"
